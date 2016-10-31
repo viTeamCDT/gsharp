@@ -26,6 +26,13 @@ namespace GSharpLang.CodeGen
             }
             else if (node is CodeBlock)
                 VisitSubnodes(node);
+            else if (node is EnumDeclarationNode)
+            {
+                GSharpEnum ienum = new GSharpEnum();
+                foreach (string name in ((EnumDeclarationNode)node).Items.Keys)
+                    ienum.AddItem(name, ((EnumDeclarationNode)node).Items[name]);
+                module.SetAttribute(((EnumDeclarationNode)node).Name, ienum);
+            }
             else if (node is FunctionDeclarationNode)
                 module.AddMethod(CompileMethod((FunctionDeclarationNode)node, false));
             else if (node is ScopeNode)

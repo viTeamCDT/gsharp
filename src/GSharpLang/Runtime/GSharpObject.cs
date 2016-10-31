@@ -1,11 +1,18 @@
 ﻿using GSharpLang.AST.Nodes;
 using System.Collections.Generic;
+using System;
 
 namespace GSharpLang.Runtime
 {
     public class GSharpObject
     {
         protected Dictionary<string, GSharpObject> attributes = new Dictionary<string, GSharpObject>();
+
+        public GSharpObject(bool haveToString)
+        {
+            if (haveToString)
+                SetAttribute("toString", new InternalMethodCallback(toString, null));
+        }
 
         public void SetAttribute(string name, GSharpObject value)
         {
@@ -32,6 +39,11 @@ namespace GSharpLang.Runtime
         public bool HasAttribute(string name)
         {
             return attributes.ContainsKey(name);
+        }
+
+        public virtual GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        {
+            return null;
         }
 
         public virtual void SetIndex(VirtualMachine vm, GSharpObject key, GSharpObject value)

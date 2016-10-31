@@ -75,6 +75,14 @@ namespace GSharpLang.CodeGen
                 methodBuilder.EmitInstruction(OperationCode.LoadTrue);
             else if (node is CodeBlock)
                 VisitSubnodes(node);
+            else if (node is EnumDeclarationNode)
+            {
+                GSharpEnum ienum = new GSharpEnum();
+                foreach (string name in ((EnumDeclarationNode)node).Items.Keys)
+                    ienum.AddItem(name, ((EnumDeclarationNode)node).Items[name]);
+                methodBuilder.EmitInstruction(OperationCode.LoadConst, methodBuilder.Module.DefineConstant(ienum));
+                methodBuilder.EmitInstruction(OperationCode.StoreLocal, symbolTable.GetSymbol(((EnumDeclarationNode)node).Name).Index);
+            }
             else if (node is ExpressionNode)
                 VisitSubnodes(node);
             else if (node is ForNode)

@@ -5,7 +5,7 @@
         private GSharpMethod constructor;
         private System.Collections.Generic.IList<GSharpMethod> instanceMethods = new System.Collections.Generic.List<GSharpMethod>();
 
-        public GSharpClass(string name, GSharpMethod constructor)
+        public GSharpClass(string name, GSharpMethod constructor) : base(false)
         {
             this.constructor = constructor;
         }
@@ -17,7 +17,7 @@
 
         public override GSharpObject Invoke(VirtualMachine vm, GSharpObject[] arguments)
         {
-            GSharpObject obj = new GSharpObject();
+            GSharpObject obj = new GSharpObject(false);
             foreach (GSharpMethod method in instanceMethods)
                 obj.SetAttribute(method.Name, method);
             vm.InvokeMethod(constructor, obj, arguments);

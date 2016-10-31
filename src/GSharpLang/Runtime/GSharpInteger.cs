@@ -6,7 +6,7 @@ namespace GSharpLang.Runtime
     {
         public int Value { get; private set; }
 
-        public GSharpInteger(int val)
+        public GSharpInteger(int val) : base(true)
         {
             Value = val;
             SetAttribute("toChar", new InternalMethodCallback(toChar, null));
@@ -49,7 +49,7 @@ namespace GSharpLang.Runtime
             return null;
         }
 
-        private GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        public override GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
         {
             return new GSharpString(Value.ToString());
         }

@@ -8,7 +8,7 @@ namespace GSharpLang.Runtime
 
         private int iterIndex = 0;
 
-        public GSharpString(string val)
+        public GSharpString(string val) : base(true)
         {
             Value = val;
             SetAttribute("size", new InternalMethodCallback(size, null));
@@ -19,7 +19,7 @@ namespace GSharpLang.Runtime
             GSharpString strVal = rval as GSharpString;
 
             if (strVal == null)
-                throw new System.Exception("Right value must be an string.");
+                strVal = (GSharpString)rval.GetAttribute("toString").Invoke(vm, new GSharpObject[] { });
 
             switch (binop)
             {
@@ -33,6 +33,11 @@ namespace GSharpLang.Runtime
             }
 
             return null;
+        }
+
+        public override GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        {
+            return new GSharpString(Value);
         }
 
         public override GSharpObject GetIndex(VirtualMachine vm, GSharpObject key)

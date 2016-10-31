@@ -20,6 +20,8 @@ namespace GSharpLang.AST.Nodes
                 return ReturnNode.Parse(parser);
             else if (parser.MatchToken(TokenType.Keyword, "incfile"))
                 return UseNode.Parse(parser);
+            else if (parser.MatchToken(TokenType.Keyword, "enum"))
+                return EnumDeclarationNode.Parse(parser);
             else if (parser.MatchToken(TokenType.Brace, "{"))
                 return ScopeNode.Parse(parser);
             else

@@ -31,6 +31,8 @@ namespace GSharpLang.Analyzer
                 throw new System.Exception("Can't define an class inside of an function.");
             else if (node is CodeBlock)
                 VisitSubnodes(node);
+            else if (node is EnumDeclarationNode)
+                symbolTable.AddSymbol(((EnumDeclarationNode)node).Name);
             else if (node is ExpressionNode)
                 VisitSubnodes(node);
             else if (node is ForNode)

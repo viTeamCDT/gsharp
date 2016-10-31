@@ -48,6 +48,7 @@
     <Compile Include="AST\Nodes\BooleanFalseNode.cs" />
     <Compile Include="AST\Nodes\BooleanTrueNode.cs" />
     <Compile Include="AST\Nodes\ClassDeclarationNode.cs" />
+    <Compile Include="AST\Nodes\EnumDeclarationNode.cs" />
     <Compile Include="AST\Nodes\ExpressionNode.cs" />
     <Compile Include="AST\Nodes\ForNode.cs" />
     <Compile Include="AST\Nodes\FunctionCallNode.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runtime\BuiltinModules\GSharpSystem\GSharpIO\GSharpFile.cs" />
     <Compile Include="Runtime\GSharpClass.cs" />
+    <Compile Include="Runtime\GSharpEnum.cs" />
     <Compile Include="Runtime\GSharpList.cs" />
     <Compile Include="Runtime\BuiltinModules\GSharpSystem\GSharpSystem.cs" />
     <Compile Include="Runtime\BuiltinModules\GSharpSystem\GSharpIO\GSharpIO.cs" />
