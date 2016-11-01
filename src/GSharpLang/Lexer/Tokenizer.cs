@@ -109,8 +109,6 @@ namespace GSharpLang.Lexer
                 case "this":
                 case "enum":
                     return new Token(TokenType.Keyword, str, loc);
-                case "is":
-                    return new Token(TokenType.Operator, str, loc);
                 default:
                     return new Token(TokenType.Identifier, str, loc);
             }

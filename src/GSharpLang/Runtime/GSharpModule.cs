@@ -15,7 +15,7 @@ namespace GSharpLang.Runtime
 
         private List<GSharpObject> constantPool = new List<GSharpObject>();
 
-        public GSharpModule(string name) : base("Module")
+        public GSharpModule(string name) : base(false)
         {
             Name = name;
         }

@@ -4,7 +4,7 @@
     {
         public string Value { get; private set; }
 
-        public GSharpName(string val) : base("Name")
+        public GSharpName(string val) : base(false)
         {
             Value = val;
         }

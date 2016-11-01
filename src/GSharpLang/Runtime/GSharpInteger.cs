@@ -6,7 +6,7 @@ namespace GSharpLang.Runtime
     {
         public int Value { get; private set; }
 
-        public GSharpInteger(int val) : base("Integer")
+        public GSharpInteger(int val) : base(true)
         {
             Value = val;
             SetAttribute("toChar", new InternalMethodCallback(toChar, null));

@@ -2,7 +2,7 @@
 {
     public class GSharpFile : GSharpObject
     {
-        public GSharpFile() : base("IO.File")
+        public GSharpFile() : base(false)
         {
             SetAttribute("create", new InternalMethodCallback(Create, null));
             SetAttribute("delete", new InternalMethodCallback(Delete, null));

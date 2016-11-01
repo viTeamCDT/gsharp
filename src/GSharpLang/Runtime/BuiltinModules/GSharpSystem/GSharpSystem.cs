@@ -2,7 +2,7 @@
 {
     public class GSharpSystem : GSharpObject
     {
-        public GSharpSystem() : base("System")
+        public GSharpSystem() : base(false)
         { }
 
         public static void SetupGSharpSystemModule(System.Collections.Generic.Dictionary<string, GSharpObject> gd)
@@ -32,7 +32,7 @@
 
         private static GSharpObject Object(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
         {
-            return new GSharpObject();
+            return new GSharpObject(true);
         }
 
         private static GSharpObject String(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)

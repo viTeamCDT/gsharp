@@ -8,7 +8,7 @@ namespace GSharpLang.Runtime
         public static readonly GSharpBool False = new GSharpBool(false);
         public bool Value { get; private set; }
 
-        public GSharpBool(bool val) : base("Boolean")
+        public GSharpBool(bool val) : base(true)
         {
             Value = val;
         }
@@ -30,6 +30,11 @@ namespace GSharpLang.Runtime
             }
 
             return null;
+        }
+
+        public override GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        {
+            return new GSharpString(Value.ToString());
         }
 
         public override bool IsTrue()

@@ -8,9 +8,10 @@ namespace GSharpLang.Runtime
     {
         protected Dictionary<string, GSharpObject> attributes = new Dictionary<string, GSharpObject>();
 
-        public GSharpObject(string type = "Object")
+        public GSharpObject(bool haveToString)
         {
-            SetAttribute("type", new GSharpString(type));
+            if (haveToString)
+                SetAttribute("toString", new InternalMethodCallback(toString, null));
         }
 
         public void SetAttribute(string name, GSharpObject value)

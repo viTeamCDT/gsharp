@@ -19,7 +19,7 @@ namespace GSharpLang.Runtime
         public GSharpMethod Method { get; private set; }
         private GSharpObject self;
         
-        public InstanceMethodCallback(GSharpMethod method, GSharpObject self) : base("Instance Method Callback")
+        public InstanceMethodCallback(GSharpMethod method, GSharpObject self) : base(false)
         {
             Method = method;
             this.self = self;
@@ -45,7 +45,7 @@ namespace GSharpLang.Runtime
         private static int nextLabelID = 0;
         private Dictionary<int, GSharpLabel> labelReferences = new Dictionary<int, GSharpLabel>();
 
-        public GSharpMethod(string name, int parameterCount, int localCount, GSharpModule module) : base("Method")
+        public GSharpMethod(string name, int parameterCount, int localCount, GSharpModule module) : base(false)
         {
             Name = name;
             Parameters = new Dictionary<string, int>();
