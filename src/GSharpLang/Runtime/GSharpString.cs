@@ -8,7 +8,7 @@ namespace GSharpLang.Runtime
 
         private int iterIndex = 0;
 
-        public GSharpString(string val) : base(true)
+        public GSharpString(string val) : base("String")
         {
             Value = val;
             SetAttribute("size", new InternalMethodCallback(size, null));

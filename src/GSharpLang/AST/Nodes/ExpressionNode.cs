@@ -16,7 +16,7 @@ namespace GSharpLang.AST.Nodes
 
         private static Node ParseAssign(Parser parser)
         {
-            Node left = ParseBooleanOr(parser);
+            Node left = ParseBoolean(parser);
             if (parser.AcceptToken(TokenType.Operator, "="))
                 return new BinaryOperationNode(BinaryOperation.Assignment, left, ParseAssign(parser));
             else if (parser.AcceptToken(TokenType.Operator, "+="))
@@ -33,20 +33,15 @@ namespace GSharpLang.AST.Nodes
                 return left;
         }
 
-        private static Node ParseBooleanOr(Parser parser)
-        {
-            Node left = ParseBooleanAnd(parser);
-            if (parser.AcceptToken(TokenType.Operator, "||"))
-                return new BinaryOperationNode(BinaryOperation.BooleanOr, left, ParseBooleanOr(parser));
-            else
-                return left;
-        }
-
-        private static Node ParseBooleanAnd(Parser parser)
+        private static Node ParseBoolean(Parser parser)
         {
             Node left = ParseEquals(parser);
-            if (parser.AcceptToken(TokenType.Operator, "&&"))
-                return new BinaryOperationNode(BinaryOperation.BooleanAnd, left, ParseBooleanAnd(parser));
+            if (parser.AcceptToken(TokenType.Operator, "||"))
+                return new BinaryOperationNode(BinaryOperation.BooleanOr, left, ParseBoolean(parser));
+            else if (parser.AcceptToken(TokenType.Operator, "&&"))
+                return new BinaryOperationNode(BinaryOperation.BooleanAnd, left, ParseBoolean(parser));
+            else if (parser.AcceptToken(TokenType.Operator, "is"))
+                return new BinaryOperationNode(BinaryOperation.InstanceOf, left, ParseBoolean(parser));
             else
                 return left;
         }

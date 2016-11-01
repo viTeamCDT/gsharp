@@ -4,7 +4,7 @@ namespace GSharpLang.Runtime.BuiltinModules.GSharpSystem.GSharpIO
 {
     public class GSharpIO : GSharpObject
     {
-        public GSharpIO() : base(false)
+        public GSharpIO() : base("IO")
         {
             SetAttribute("File", new GSharpFile());
             SetAttribute("print", new InternalMethodCallback(Print, null));

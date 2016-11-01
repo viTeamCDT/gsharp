@@ -7,7 +7,7 @@
         private GSharpObject self;
         private GSharpMethodCallback callback;
 
-        public InternalMethodCallback(GSharpMethodCallback callback, GSharpObject self) : base(false)
+        public InternalMethodCallback(GSharpMethodCallback callback, GSharpObject self) : base("Internal Method Callback")
         {
             this.self = self;
             this.callback = callback;

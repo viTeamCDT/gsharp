@@ -4,7 +4,7 @@
     {
         private int nextVal = 0;
 
-        public GSharpEnum() : base(true)
+        public GSharpEnum() : base("Enumeration")
         { }
 
         public void AddItem(string name)
