@@ -147,8 +147,15 @@ namespace GSharpLang.Runtime
                     Stack.Push(Stack.Self);
                     break;
                 case OperationCode.BinaryOperation:
-                        Stack.Push(Stack.Pop().PerformBinaryOperation(this, (BinaryOperation)ins.Argument, Stack.Pop()));
+                    Stack.Push(Stack.Pop().PerformBinaryOperation(this, (BinaryOperation)ins.Argument, Stack.Pop()));
+                    break;
+                case OperationCode.InstanceOf:
+                    {
+                        GSharpObject o1 = Stack.Pop();
+                        GSharpObject o2 = Stack.Pop();
+                        Stack.Push(new GSharpBool(o1.Type == o2.Type));
                         break;
+                    }
                 case OperationCode.Invoke:
                     {
                         GSharpObject target = Stack.Pop();

@@ -8,9 +8,10 @@ namespace GSharpLang.Runtime
         public static readonly GSharpBool False = new GSharpBool(false);
         public bool Value { get; private set; }
 
-        public GSharpBool(bool val) : base(true)
+        public GSharpBool(bool val) : base("Boolean")
         {
             Value = val;
+            SetAttribute("toString", new InternalMethodCallback(toString, null));
         }
 
         public override GSharpObject PerformBinaryOperation(VirtualMachine vm, BinaryOperation binop, GSharpObject rval)
@@ -32,7 +33,7 @@ namespace GSharpLang.Runtime
             return null;
         }
 
-        public override GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        public GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
         {
             return new GSharpString(Value.ToString());
         }

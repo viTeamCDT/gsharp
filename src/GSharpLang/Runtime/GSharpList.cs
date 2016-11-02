@@ -8,7 +8,7 @@ namespace GSharpLang.Runtime
 
         private int iterIndex = 0;
 
-        public GSharpList(GSharpObject[] items) : base(false)
+        public GSharpList(GSharpObject[] items) : base("List")
         {
             Objects = new List<GSharpObject>();
             Objects.AddRange(items);

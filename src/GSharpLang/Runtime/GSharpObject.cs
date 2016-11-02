@@ -6,14 +6,14 @@ namespace GSharpLang.Runtime
 {
     public class GSharpObject
     {
+        public string Type { get; private set; }
         protected Dictionary<string, GSharpObject> attributes = new Dictionary<string, GSharpObject>();
-
-        public GSharpObject(bool haveToString)
+        
+        public GSharpObject(string type = "Object")
         {
-            if (haveToString)
-                SetAttribute("toString", new InternalMethodCallback(toString, null));
+            Type = type;
         }
-
+        
         public void SetAttribute(string name, GSharpObject value)
         {
             if (value is GSharpMethod)
@@ -39,11 +39,6 @@ namespace GSharpLang.Runtime
         public bool HasAttribute(string name)
         {
             return attributes.ContainsKey(name);
-        }
-
-        public virtual GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
-        {
-            return null;
         }
 
         public virtual void SetIndex(VirtualMachine vm, GSharpObject key, GSharpObject value)
@@ -114,6 +109,11 @@ namespace GSharpLang.Runtime
         public virtual void IterReset(VirtualMachine vm)
         {
             GetAttribute("_iterReset").Invoke(vm, new GSharpObject[] { });
+        }
+        
+        public override string ToString()
+        {
+            return Type;
         }
         
         public override int GetHashCode()

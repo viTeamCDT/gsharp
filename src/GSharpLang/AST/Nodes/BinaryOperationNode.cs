@@ -15,7 +15,8 @@ namespace GSharpLang.AST.Nodes
 		GreaterOrEqual,
 		BooleanAnd,
 		BooleanOr,
-		Modulus
+		Modulus,
+		InstanceOf
 	}
 	
 	public class BinaryOperationNode : Node

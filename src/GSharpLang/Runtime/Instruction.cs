@@ -3,6 +3,7 @@
     public enum OperationCode
     {
         BinaryOperation,
+        InstanceOf,
         Pop,
         LoadTrue,
         LoadFalse,

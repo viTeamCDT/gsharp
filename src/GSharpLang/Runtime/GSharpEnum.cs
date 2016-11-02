@@ -4,8 +4,10 @@
     {
         private int nextVal = 0;
 
-        public GSharpEnum() : base(true)
-        { }
+        public GSharpEnum() : base("Enumeration")
+        { 
+            SetAttribute("toString", new InternalMethodCallback(toString, null));
+        }
 
         public void AddItem(string name)
         {
@@ -17,7 +19,7 @@
             SetAttribute(name, new GSharpInteger(val));
         }
 
-        public override GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        public GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
         {
             if (arguments.Length != 1)
                 throw new System.Exception("Invalid number of arguments in enum.ToString().");

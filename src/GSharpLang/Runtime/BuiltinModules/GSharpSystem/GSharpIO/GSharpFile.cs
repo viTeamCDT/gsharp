@@ -2,7 +2,7 @@
 {
     public class GSharpFile : GSharpObject
     {
-        public GSharpFile() : base(false)
+        public GSharpFile() : base("Builtin Module")
         {
             SetAttribute("create", new InternalMethodCallback(Create, null));
             SetAttribute("delete", new InternalMethodCallback(Delete, null));

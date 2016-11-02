@@ -62,6 +62,12 @@ namespace GSharpLang.CodeGen
                         Visit(binop.Left);
                     }
                 }
+                else if (binop.BinaryOperation == BinaryOperation.InstanceOf)
+                {
+                    Visit(binop.Right);
+                    Visit(binop.Left);
+                    methodBuilder.EmitInstruction(OperationCode.InstanceOf);
+                }
                 else
                 {
                     Visit(binop.Right);

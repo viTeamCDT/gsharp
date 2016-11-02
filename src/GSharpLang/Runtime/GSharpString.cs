@@ -8,10 +8,15 @@ namespace GSharpLang.Runtime
 
         private int iterIndex = 0;
 
-        public GSharpString(string val) : base(true)
+        public GSharpString(string val) : base("String")
         {
             Value = val;
+            SetAttribute("contains", new InternalMethodCallback(contains, null));
+            SetAttribute("isDigit", new InternalMethodCallback(isDigit, null));
+            SetAttribute("isLetters", new InternalMethodCallback(isLetters, null));
+            SetAttribute("isWhitespace", new InternalMethodCallback(isWhitespace, null));
             SetAttribute("size", new InternalMethodCallback(size, null));
+            SetAttribute("toString", new InternalMethodCallback(toString, null));
         }
 
         public override GSharpObject PerformBinaryOperation(VirtualMachine vm, BinaryOperation binop, GSharpObject rval)
@@ -34,8 +39,39 @@ namespace GSharpLang.Runtime
 
             return null;
         }
-
-        public override GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        
+        public GSharpObject contains(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        {
+            if (arguments.Length != 1)
+                throw new System.Exception("Invalid number of arguments to String.contains()");
+            return new GSharpBool(Value.Contains(arguments[0].ToString()));
+        }
+        
+        public GSharpObject isDigit(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        {
+            foreach (char ch in Value)
+                if (!char.IsDigit(ch))
+                    return GSharpBool.False;
+            return GSharpBool.True;
+        }
+        
+        public GSharpObject isLetters(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        {
+            foreach (char ch in Value)
+                if (!char.IsLetter(ch))
+                    return GSharpBool.False;
+            return GSharpBool.True;
+        }
+        
+        public GSharpObject isWhitespace(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
+        {
+            foreach (char ch in Value)
+                if (!char.IsWhiteSpace(ch))
+                    return GSharpBool.False;
+            return GSharpBool.True;
+        }
+        
+        public GSharpObject toString(VirtualMachine vm, GSharpObject self, GSharpObject[] arguments)
         {
             return new GSharpString(Value);
         }
